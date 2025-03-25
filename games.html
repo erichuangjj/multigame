@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse and play our collection of monster-themed games across different categories.">
+    <meta name="description" content="Browse and play our collection of monster-themed games">
     <title>Games - Monster Supervisor</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
@@ -12,13 +12,34 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .game-card {
+            transition: all 0.3s ease;
+        }
         .game-card:hover {
             transform: translateY(-5px);
+        }
+        .category-tab.active {
+            border-color: #4ecdc4;
+            color: #4ecdc4;
+        }
+        .game-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%; /* 4:3 宽高比 */
+            background: #1a1a1a;
+        }
+        .game-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body class="bg-black text-white">
-    <!-- 导航栏 -->
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -28,22 +49,22 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
-                        <a href="games.html" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">Games</a>
-                        <a href="about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="./index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="./games.html" class="text-white px-3 py-2 rounded-md text-sm font-medium">Games</a>
+                        <a href="./about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- 搜索区域 -->
+    <!-- Search Section -->
     <section class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-bold text-center mb-8 gradient-text">Game Library</h1>
             <div class="max-w-2xl mx-auto">
                 <div class="relative">
-                    <input type="text" placeholder="Search games..." 
+                    <input type="text" id="game-search" placeholder="Search games..." 
                            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg 
                                   text-white placeholder-gray-400 focus:outline-none focus:border-blue-500">
                     <button class="absolute right-3 top-3">
@@ -56,125 +77,356 @@
         </div>
     </section>
 
-    <!-- 游戏分类 -->
-    <section class="py-12 bg-black">
+    <!-- Game Categories -->
+    <div class="bg-black sticky top-16 z-40 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <a href="games/categories/action.html" class="block">
-                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 
-                                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
-                                border border-gray-700/50">
-                        <div class="text-4xl mb-4">⚔️</div>
-                        <h3 class="text-xl font-bold mb-2">Action</h3>
-                        <p class="text-gray-400">Fast-paced combat and exciting adventures</p>
+            <div class="flex overflow-x-auto py-4 space-x-4 no-scrollbar">
+                <button class="category-tab active whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="all">
+                    All Games
+                </button>
+                <button class="category-tab whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="action">
+                    Action
+                </button>
+                <button class="category-tab whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="puzzle">
+                    Puzzle
+                </button>
+                <button class="category-tab whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="sports">
+                    Sports
+                </button>
+                <button class="category-tab whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="racing">
+                    Racing
+                </button>
+                <button class="category-tab whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="strategy">
+                    Strategy
+                </button>
+                <button class="category-tab whitespace-nowrap px-4 py-2 rounded-lg border-2 border-transparent hover:border-gray-700 transition-colors" data-category="casual">
+                    Casual
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game List -->
+    <section class="py-12 bg-black min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="games-grid">
+                <!-- Action Adventure Games -->
+                <div class="game-card" data-category="action">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c/" allowfullscreen></iframe>
                     </div>
-                </a>
-                <a href="games/categories/strategy.html" class="block">
-                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 
-                                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
-                                border border-gray-700/50">
-                        <div class="text-4xl mb-4">🎯</div>
-                        <h3 class="text-xl font-bold mb-2">Strategy</h3>
-                        <p class="text-gray-400">Plan, build, and conquer with tactics</p>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Battle</h3>
+                        <p class="text-sm text-gray-400 mb-2">Battle with other players in a multiplayer monster battle game</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Action Adventure</span>
+                            <a href="https://html5.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
                     </div>
-                </a>
-                <a href="games/categories/puzzle.html" class="block">
-                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 
-                                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
-                                border border-gray-700/50">
-                        <div class="text-4xl mb-4">🧩</div>
-                        <h3 class="text-xl font-bold mb-2">Puzzle</h3>
-                        <p class="text-gray-400">Challenge your mind with brain teasers</p>
+                </div>
+
+                <div class="game-card" data-category="action">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/rvvASMiM/bf1268dccb5d43e7970bb3edaa54afc8/" allowfullscreen></iframe>
                     </div>
-                </a>
-                <a href="games/categories/arcade.html" class="block">
-                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 
-                                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
-                                border border-gray-700/50">
-                        <div class="text-4xl mb-4">🕹️</div>
-                        <h3 class="text-xl font-bold mb-2">Arcade</h3>
-                        <p class="text-gray-400">Classic gameplay with modern twists</p>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Hunter</h3>
+                        <p class="text-sm text-gray-400 mb-2">Explore the world and catch various strange monsters</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Action Adventure</span>
+                            <a href="https://html5.gamedistribution.com/rvvASMiM/bf1268dccb5d43e7970bb3edaa54afc8/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
                     </div>
-                </a>
+                </div>
+
+                <div class="game-card" data-category="action">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/4dcf3e371f524a79b33494d93370be11/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Evolution</h3>
+                        <p class="text-sm text-gray-400 mb-2">Train and evolve your monsters to create the strongest team</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Action Adventure</span>
+                            <a href="https://html5.gamedistribution.com/4dcf3e371f524a79b33494d93370be11/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Puzzle Games -->
+                <div class="game-card" data-category="puzzle">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/f804d079d69442d1a6b1ee19d8c3ca6d/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Match</h3>
+                        <p class="text-sm text-gray-400 mb-2">Classic three-in-a-row gameplay with cute monster characters</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Puzzle</span>
+                            <a href="https://html5.gamedistribution.com/f804d079d69442d1a6b1ee19d8c3ca6d/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="puzzle">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/5a3ae4aa24f344c0995a53c508a6c864/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Puzzle</h3>
+                        <p class="text-sm text-gray-400 mb-2">Rearrange pieces to restore various cute monster characters</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Puzzle</span>
+                            <a href="https://html5.gamedistribution.com/5a3ae4aa24f344c0995a53c508a6c864/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="puzzle">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/b7ab9c0ff91043e082686cf5e750b5e1/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Blocks</h3>
+                        <p class="text-sm text-gray-400 mb-2">Push blocks to help the little monsters reach the end</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Puzzle</span>
+                            <a href="https://html5.gamedistribution.com/b7ab9c0ff91043e082686cf5e750b5e1/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sports Games -->
+                <div class="game-card" data-category="sports">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/49d183f5f5e34dd6af8708d2d8095a1b/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Soccer</h3>
+                        <p class="text-sm text-gray-400 mb-2">Control monsters to play fun soccer games</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Sports</span>
+                            <a href="https://html5.gamedistribution.com/49d183f5f5e34dd6af8708d2d8095a1b/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="sports">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/c84acd1c0f3d4d5ba4c17d856a7074da/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Tennis</h3>
+                        <p class="text-sm text-gray-400 mb-2">Experience thrilling tennis matches with monsters</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Sports</span>
+                            <a href="https://html5.gamedistribution.com/c84acd1c0f3d4d5ba4c17d856a7074da/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="sports">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/b0173067431d4f8eb023a676dd164d03/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Golf</h3>
+                        <p class="text-sm text-gray-400 mb-2">Experience golf fun in a fantasy course</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Sports</span>
+                            <a href="https://html5.gamedistribution.com/b0173067431d4f8eb023a676dd164d03/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Racing Games -->
+                <div class="game-card" data-category="racing">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/d9c0a3f1e4674123b92b1ae6b3e2c5b6/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Racing</h3>
+                        <p class="text-sm text-gray-400 mb-2">Drive unique monster racing cars to experience thrilling racing</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Racing</span>
+                            <a href="https://html5.gamedistribution.com/d9c0a3f1e4674123b92b1ae6b3e2c5b6/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="racing">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/7c1d5f8c1cef468ba52c3893afb1c7c4/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Flying Car</h3>
+                        <p class="text-sm text-gray-400 mb-2">Complete thrilling stunt moves in the air</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Racing</span>
+                            <a href="https://html5.gamedistribution.com/7c1d5f8c1cef468ba52c3893afb1c7c4/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="racing">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/e582c9a5f07f4fcd93c9359d6404928d/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Off-Road</h3>
+                        <p class="text-sm text-gray-400 mb-2">Drive off-road vehicles in treacherous terrain</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Racing</span>
+                            <a href="https://html5.gamedistribution.com/e582c9a5f07f4fcd93c9359d6404928d/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategy Games -->
+                <div class="game-card" data-category="strategy">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/f0aa2f6071e34f019c7c4c539dfd3c80/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Defense</h3>
+                        <p class="text-sm text-gray-400 mb-2">Build defense towers to protect the city from monster invasions</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Strategy</span>
+                            <a href="https://html5.gamedistribution.com/f0aa2f6071e34f019c7c4c539dfd3c80/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="strategy">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/b8c5c1f7c4c04f9b8b5d0d56f1b1f496/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Army</h3>
+                        <p class="text-sm text-gray-400 mb-2">Assemble monster armies to conquer enemy territories</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Strategy</span>
+                            <a href="https://html5.gamedistribution.com/b8c5c1f7c4c04f9b8b5d0d56f1b1f496/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="strategy">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/d2ffb2e3f94e4a7c8c6f0ee75f6ddb2f/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Kingdom</h3>
+                        <p class="text-sm text-gray-400 mb-2">Build and manage your monster kingdom</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Strategy</span>
+                            <a href="https://html5.gamedistribution.com/d2ffb2e3f94e4a7c8c6f0ee75f6ddb2f/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Casual Games -->
+                <div class="game-card" data-category="casual">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/c3c5b4d4c437445c9c45857a7696641c/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Farm</h3>
+                        <p class="text-sm text-gray-400 mb-2">Manage your monster farm to grow various cute monsters</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Casual</span>
+                            <a href="https://html5.gamedistribution.com/c3c5b4d4c437445c9c45857a7696641c/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="casual">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/a9f1c90a5a5b4a1b8c234aa884f9a9c5/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Restaurant</h3>
+                        <p class="text-sm text-gray-400 mb-2">Manage a unique monster food restaurant</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Casual</span>
+                            <a href="https://html5.gamedistribution.com/a9f1c90a5a5b4a1b8c234aa884f9a9c5/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card" data-category="casual">
+                    <div class="game-container">
+                        <iframe src="https://html5.gamedistribution.com/e7d9395768d243d987599a9f11cb6e6f/" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-gradient-to-br from-gray-900 to-gray-800">
+                        <h3 class="text-lg font-bold mb-1">Monster Fashion</h3>
+                        <p class="text-sm text-gray-400 mb-2">Fashion cute monsters with stylish outfits</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">Casual</span>
+                            <a href="https://html5.gamedistribution.com/e7d9395768d243d987599a9f11cb6e6f/" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                                Start Game
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- 热门游戏 -->
-    <section class="py-12 bg-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-8">Popular Games</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 游戏卡片 1 -->
-                <div class="game-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden 
-                            transition-all duration-300 border border-gray-700/50">
-                    <div class="aspect-video relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600">
-                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                <span class="text-6xl">🎮</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Monster Arena</h3>
-                        <p class="text-gray-400 mb-4">Battle against other players in epic monster duels</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Action, PvP</span>
-                            <a href="games/monster-arena.html" 
-                               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg 
-                                      transition-colors text-sm">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 2 -->
-                <div class="game-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden 
-                            transition-all duration-300 border border-gray-700/50">
-                    <div class="aspect-video relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-blue-600">
-                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                <span class="text-6xl">🏰</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Monster Tower Defense</h3>
-                        <p class="text-gray-400 mb-4">Defend your base with strategic monster placement</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Strategy, Defense</span>
-                            <a href="games/monster-tower-defense.html" 
-                               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg 
-                                      transition-colors text-sm">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 游戏卡片 3 -->
-                <div class="game-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden 
-                            transition-all duration-300 border border-gray-700/50">
-                    <div class="aspect-video relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600">
-                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                <span class="text-6xl">🧩</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Monster Puzzle</h3>
-                        <p class="text-gray-400 mb-4">Match and combine monsters to solve puzzles</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Puzzle, Casual</span>
-                            <a href="games/monster-puzzle.html" 
-                               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg 
-                                      transition-colors text-sm">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
+    <!-- Footer -->
     <footer class="bg-gray-900 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -183,23 +435,23 @@
                         <img src="images/game-logo.svg" alt="Game Logo" class="h-8" onerror="this.style.display='none'">
                         <span class="text-lg font-bold">Monster Supervisor</span>
                     </div>
-                    <p class="text-gray-400 text-sm">© 2024 Monster Supervisor.<br>All rights reserved.</p>
+                    <p class="text-gray-400 text-sm">© 2024 Monster Supervisor.<br>All rights reserved</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="games.html" class="text-gray-400 hover:text-white transition-colors">Games</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="./index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="./games.html" class="text-gray-400 hover:text-white transition-colors">Games</a></li>
+                        <li><a href="./about.html" class="text-gray-400 hover:text-white transition-colors">About</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4">Categories</h3>
+                    <h3 class="text-lg font-bold mb-4">Game Categories</h3>
                     <ul class="space-y-2">
-                        <li><a href="games/categories/action.html" class="text-gray-400 hover:text-white transition-colors">Action Games</a></li>
-                        <li><a href="games/categories/strategy.html" class="text-gray-400 hover:text-white transition-colors">Strategy Games</a></li>
-                        <li><a href="games/categories/puzzle.html" class="text-gray-400 hover:text-white transition-colors">Puzzle Games</a></li>
-                        <li><a href="games/categories/arcade.html" class="text-gray-400 hover:text-white transition-colors">Arcade Games</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-category="action">Action</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-category="puzzle">Puzzle</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-category="sports">Sports</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-category="racing">Racing</a></li>
                     </ul>
                 </div>
                 <div>
@@ -220,5 +472,72 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('game-search');
+        const gamesGrid = document.getElementById('games-grid');
+        
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const gameCards = document.querySelectorAll('.game-card');
+            
+            gameCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category tab switching
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.dataset.category;
+                filterGamesByCategory(category);
+                
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Footer category links
+        const categoryLinks = document.querySelectorAll('footer a[data-category]');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                filterGamesByCategory(category);
+                
+                // Activate corresponding category tab
+                categoryTabs.forEach(tab => {
+                    if (tab.dataset.category === category) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to game area
+                document.querySelector('#games-grid').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        function filterGamesByCategory(category) {
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html> 
