@@ -159,11 +159,42 @@
                         We're crafting an epic monster management experience where strategy meets adventure. 
                         Be the first to play when we launch!
                     </p>
-                    <button class="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-12 rounded-xl 
+                    <button id="joinBetaBtn" class="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-12 rounded-xl 
                                  hover:bg-white/20 transition-all duration-300 transform hover:scale-105
                                  border border-white/20 shadow-lg">
                         Join Beta Access
                     </button>
+                </div>
+            </div>
+
+            <!-- Beta 注册模态框 -->
+            <div id="betaModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+                <div class="bg-gray-900 p-8 rounded-2xl max-w-md w-full mx-4 border border-gray-800">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold gradient-text">Join Beta Access</h3>
+                        <button id="closeBetaModal" class="text-gray-400 hover:text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <form id="betaForm" class="space-y-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                                placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-400 mb-2">Preferred Username</label>
+                            <input type="text" id="username" name="username" required
+                                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                                placeholder="Username">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105">
+                            Register for Beta
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -322,6 +353,42 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Beta 注册模态框功能
+        const betaModal = document.getElementById('betaModal');
+        const joinBetaBtn = document.getElementById('joinBetaBtn');
+        const closeBetaModal = document.getElementById('closeBetaModal');
+        const betaForm = document.getElementById('betaForm');
+
+        joinBetaBtn.addEventListener('click', () => {
+            betaModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBetaModal.addEventListener('click', () => {
+            betaModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        betaModal.addEventListener('click', (e) => {
+            if (e.target === betaModal) {
+                betaModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        betaForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            
+            // 这里可以添加发送到服务器的逻辑
+            alert(`Thank you for registering!\nEmail: ${email}\nUsername: ${username}\n\nWe'll contact you when the beta is ready.`);
+            
+            betaModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            betaForm.reset();
         });
     </script>
 </body>
