@@ -1,1 +1,67 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景渐变 -->
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#455a64"/>
+            <stop offset="100%" style="stop-color:#263238"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- 背景 -->
+    <rect width="400" height="300" fill="url(#bg)"/>
+    
+    <!-- 旗帜 -->
+    <rect x="200" y="80" width="5" height="150" fill="#b0bec5"/>
+    <path d="M205,80 L255,100 L205,120 Z" fill="#ef5350"/>
+    
+    <!-- 怪物军队 -->
+    <!-- 第一排 -->
+    <g transform="translate(80,180)">
+        <circle cx="0" cy="0" r="20" fill="#7986cb"/>
+        <circle cx="-8" cy="-5" r="4" fill="white"/>
+        <circle cx="8" cy="-5" r="4" fill="white"/>
+        <path d="M-8,8 Q0,15 8,8" fill="none" stroke="white" stroke-width="2"/>
+    </g>
+    <g transform="translate(130,180)">
+        <circle cx="0" cy="0" r="20" fill="#7986cb"/>
+        <circle cx="-8" cy="-5" r="4" fill="white"/>
+        <circle cx="8" cy="-5" r="4" fill="white"/>
+        <path d="M-8,8 Q0,15 8,8" fill="none" stroke="white" stroke-width="2"/>
+    </g>
+    <g transform="translate(180,180)">
+        <circle cx="0" cy="0" r="20" fill="#7986cb"/>
+        <circle cx="-8" cy="-5" r="4" fill="white"/>
+        <circle cx="8" cy="-5" r="4" fill="white"/>
+        <path d="M-8,8 Q0,15 8,8" fill="none" stroke="white" stroke-width="2"/>
+    </g>
+    
+    <!-- 第二排 -->
+    <g transform="translate(105,140)">
+        <circle cx="0" cy="0" r="20" fill="#5c6bc0"/>
+        <circle cx="-8" cy="-5" r="4" fill="white"/>
+        <circle cx="8" cy="-5" r="4" fill="white"/>
+        <path d="M-8,8 Q0,15 8,8" fill="none" stroke="white" stroke-width="2"/>
+    </g>
+    <g transform="translate(155,140)">
+        <circle cx="0" cy="0" r="20" fill="#5c6bc0"/>
+        <circle cx="-8" cy="-5" r="4" fill="white"/>
+        <circle cx="8" cy="-5" r="4" fill="white"/>
+        <path d="M-8,8 Q0,15 8,8" fill="none" stroke="white" stroke-width="2"/>
+    </g>
+    
+    <!-- 领袖怪物 -->
+    <g transform="translate(130,90)">
+        <circle cx="0" cy="0" r="25" fill="#3f51b5"/>
+        <circle cx="-10" cy="-8" r="5" fill="white"/>
+        <circle cx="10" cy="-8" r="5" fill="white"/>
+        <path d="M-12,10 Q0,20 12,10" fill="none" stroke="white" stroke-width="3"/>
+        <!-- 皇冠 -->
+        <path d="M-15,-25 L-5,-15 L0,-25 L5,-15 L15,-25 L10,-10 L-10,-10 Z" fill="#ffd700"/>
+    </g>
+    
+    <!-- 标题 -->
+    <text x="200" y="270" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">
+        Monster Army
+    </text>
+</svg> 

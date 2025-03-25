@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景渐变 -->
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4a148c"/>
+            <stop offset="100%" style="stop-color:#311b92"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- 背景 -->
+    <rect width="400" height="300" fill="url(#bg)"/>
+    
+    <!-- 进化箭头 -->
+    <path d="M100,150 L300,150" stroke="white" stroke-width="4" stroke-dasharray="10,5"/>
+    <path d="M280,130 L300,150 L280,170" fill="none" stroke="white" stroke-width="4"/>
+    
+    <!-- 小怪物 -->
+    <circle cx="100" cy="150" r="30" fill="#64b5f6"/>
+    <circle cx="90" cy="140" r="5" fill="white"/>
+    <circle cx="110" cy="140" r="5" fill="white"/>
+    <path d="M90,160 Q100,170 110,160" fill="none" stroke="white" stroke-width="2"/>
+    
+    <!-- 中等怪物 -->
+    <circle cx="200" cy="150" r="40" fill="#7e57c2"/>
+    <circle cx="185" cy="140" r="6" fill="white"/>
+    <circle cx="215" cy="140" r="6" fill="white"/>
+    <path d="M185,160 Q200,175 215,160" fill="none" stroke="white" stroke-width="3"/>
+    
+    <!-- 大怪物 -->
+    <circle cx="300" cy="150" r="50" fill="#f06292"/>
+    <circle cx="280" cy="140" r="8" fill="white"/>
+    <circle cx="320" cy="140" r="8" fill="white"/>
+    <path d="M280,165 Q300,185 320,165" fill="none" stroke="white" stroke-width="4"/>
+    
+    <!-- 标题 -->
+    <text x="200" y="270" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">
+        Monster Evolution
+    </text>
+</svg> 
