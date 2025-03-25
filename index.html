@@ -138,35 +138,71 @@
     </section>
 
     <!-- 游戏展示 -->
-    <section id="play-now" class="py-24 bg-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-8 gradient-text">Play Now</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold mb-2">Quick Match</h3>
-                    <p class="text-gray-400">Jump into a quick battle with random opponents</p>
+    <section id="play-now" class="py-24 bg-black relative overflow-hidden">
+        <!-- 背景效果 -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-3xl transform -skew-y-12"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <h2 class="text-5xl font-bold text-center mb-16 gradient-text">Enter the Arena</h2>
+            
+            <!-- 游戏预览卡片 -->
+            <div class="relative aspect-video rounded-2xl overflow-hidden mb-16 transform hover:scale-[1.02] transition-all duration-300">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600">
+                    <div class="absolute inset-0 bg-black/50"></div>
                 </div>
-                <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
-                    <div class="text-4xl mb-4">🏆</div>
-                    <h3 class="text-xl font-bold mb-2">Ranked Mode</h3>
-                    <p class="text-gray-400">Compete in ranked matches to climb the leaderboard</p>
-                </div>
-                <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-colors">
-                    <div class="text-4xl mb-4">📖</div>
-                    <h3 class="text-xl font-bold mb-2">Tutorial</h3>
-                    <p class="text-gray-400">Learn the basics with our interactive tutorial</p>
+                <div class="relative h-full flex flex-col items-center justify-center text-center p-8">
+                    <div class="text-8xl mb-8 animate-bounce">🎮</div>
+                    <h3 class="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                        Game Coming Soon!
+                    </h3>
+                    <p class="text-xl text-gray-200 mb-8 max-w-2xl">
+                        We're crafting an epic monster management experience where strategy meets adventure. 
+                        Be the first to play when we launch!
+                    </p>
+                    <button class="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-12 rounded-xl 
+                                 hover:bg-white/20 transition-all duration-300 transform hover:scale-105
+                                 border border-white/20 shadow-lg">
+                        Join Beta Access
+                    </button>
                 </div>
             </div>
-            <div class="relative aspect-video rounded-xl overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 p-8">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="text-center">
-                        <h3 class="text-2xl font-bold mb-4">Game Coming Soon!</h3>
-                        <p class="text-lg text-gray-200 mb-8">We're working hard to bring you an amazing monster management experience.</p>
-                        <button class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors">
-                            Join Beta
-                        </button>
-                    </div>
+
+            <!-- 游戏模式 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 
+                            transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
+                            border border-gray-700/50">
+                    <div class="text-5xl mb-6 bg-gradient-to-br from-blue-500 to-purple-500 
+                                rounded-lg p-4 inline-block">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r 
+                             from-blue-400 to-purple-400">Quick Match</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Jump into instant battles with random opponents. Perfect for quick gaming sessions.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 
+                            transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
+                            border border-gray-700/50">
+                    <div class="text-5xl mb-6 bg-gradient-to-br from-blue-500 to-purple-500 
+                                rounded-lg p-4 inline-block">🏆</div>
+                    <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r 
+                             from-blue-400 to-purple-400">Ranked Mode</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Test your skills in competitive matches and climb the global leaderboard.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 
+                            transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
+                            border border-gray-700/50">
+                    <div class="text-5xl mb-6 bg-gradient-to-br from-blue-500 to-purple-500 
+                                rounded-lg p-4 inline-block">📖</div>
+                    <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r 
+                             from-blue-400 to-purple-400">Tutorial</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Master the game mechanics with our interactive learning system.
+                    </p>
                 </div>
             </div>
         </div>
