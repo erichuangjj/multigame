@@ -65,8 +65,18 @@
                     <img src="./images/game-logo.svg" alt="Game Logo" class="h-8 w-8" onerror="this.style.display='none'">
                     <span class="ml-2 text-xl font-bold">Monster Supervisor</span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="search" id="gameSearch" 
+                            class="w-64 px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Search games...">
+                        <div id="searchResults" class="absolute left-0 right-0 mt-2 bg-gray-900 rounded-lg shadow-xl border border-gray-800 hidden">
+                            <!-- Search results will be populated here -->
+                        </div>
+                    </div>
+                    <!-- Navigation Links -->
+                    <div class="flex items-baseline space-x-8">
                         <a href="./index.html" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
                         <a href="./games.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Games</a>
                         <a href="./about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
@@ -343,6 +353,64 @@
             parallaxElements.forEach(element => {
                 element.style.transform = `translateX(${mouseX}px) translateY(${mouseY}px)`;
             });
+        });
+
+        // 搜索功能
+        const gameSearch = document.getElementById('gameSearch');
+        const searchResults = document.getElementById('searchResults');
+        const games = [
+            { name: 'Monster Match', category: 'Puzzle', url: './games/monster-match.html' },
+            { name: 'Monster Puzzle', category: 'Puzzle', url: './games/monster-puzzle.html' },
+            { name: 'Monster Blocks', category: 'Puzzle', url: './games/monster-blocks.html' },
+            { name: 'Monster Soccer', category: 'Sports', url: './games/monster-soccer.html' },
+            { name: 'Monster Tennis', category: 'Sports', url: './games/monster-tennis.html' },
+            { name: 'Monster Golf', category: 'Sports', url: './games/monster-golf.html' },
+            { name: 'Monster Racing', category: 'Racing', url: './games/monster-racing.html' },
+            { name: 'Monster Flying Car', category: 'Racing', url: './games/monster-flying-car.html' },
+            { name: 'Monster Off-road', category: 'Racing', url: './games/monster-off-road.html' },
+            { name: 'Monster Defense', category: 'Strategy', url: './games/monster-defense.html' },
+            { name: 'Monster Army', category: 'Strategy', url: './games/monster-army.html' },
+            { name: 'Monster Kingdom', category: 'Strategy', url: './games/monster-kingdom.html' },
+            { name: 'Monster Farm', category: 'Casual', url: './games/monster-farm.html' },
+            { name: 'Monster Restaurant', category: 'Casual', url: './games/monster-restaurant.html' },
+            { name: 'Monster Fashion', category: 'Casual', url: './games/monster-fashion.html' }
+        ];
+
+        gameSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm.length < 2) {
+                searchResults.classList.add('hidden');
+                return;
+            }
+
+            const filteredGames = games.filter(game => 
+                game.name.toLowerCase().includes(searchTerm) || 
+                game.category.toLowerCase().includes(searchTerm)
+            );
+
+            if (filteredGames.length > 0) {
+                searchResults.innerHTML = filteredGames.map(game => `
+                    <a href="${game.url}" class="block px-4 py-3 hover:bg-gray-800 transition-colors">
+                        <div class="font-medium text-white">${game.name}</div>
+                        <div class="text-sm text-gray-400">${game.category}</div>
+                    </a>
+                `).join('');
+                searchResults.classList.remove('hidden');
+            } else {
+                searchResults.innerHTML = `
+                    <div class="px-4 py-3 text-gray-400">
+                        No games found
+                    </div>
+                `;
+                searchResults.classList.remove('hidden');
+            }
+        });
+
+        // 点击其他地方时隐藏搜索结果
+        document.addEventListener('click', (e) => {
+            if (!gameSearch.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.add('hidden');
+            }
         });
 
         // 平滑滚动
