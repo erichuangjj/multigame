@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏网站 - 游戏详情</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6KPLXH96K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-C6KPLXH96K');
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../images/logo.png" alt="Monster Games Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../games.html">Games</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search games...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="game-details">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="game-info">
+                    <h1 id="gameTitle">Loading...</h1>
+                    <div class="game-meta">
+                        <span class="game-category" id="gameCategory">Loading...</span>
+                        <span class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <span id="gameRating">4.8</span>
+                        </span>
+                        <span class="game-plays">
+                            <i class="fas fa-gamepad"></i>
+                            <span id="gamePlays">10,000+</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="game-actions">
+                    <button class="share-btn">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="favorite-btn">
+                        <i class="fas fa-heart"></i> Favorite
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="game-main">
+                    <div class="game-frame">
+                        <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="game-description">
+                        <h2>About This Game</h2>
+                        <p id="gameDescription">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="game-sidebar">
+                    <div class="game-instructions">
+                        <h2>How to Play</h2>
+                        <div id="gameInstructions">
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+
+                    <div class="game-controls">
+                        <h2>Controls</h2>
+                        <ul>
+                            <li><i class="fas fa-mouse"></i> Mouse</li>
+                            <li><i class="fas fa-keyboard"></i> Keyboard</li>
+                            <li><i class="fas fa-touch"></i> Touch Screen</li>
+                        </ul>
+                    </div>
+
+                    <div class="game-stats">
+                        <h2>Game Stats</h2>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Avg. Play Time: 15 min</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span>Active Players: 1,234</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>Rating: 4.8/5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="related-games">
+                        <h2>Similar Games</h2>
+                        <div class="related-games-grid">
+                            <!-- 相关游戏将通过JavaScript动态加载 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Monster Games is your ultimate destination for online gaming entertainment. We offer a wide variety of games for all ages and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../games.html">Games</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monster Games. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/games.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html> 

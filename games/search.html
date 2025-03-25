@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏网站 - 搜索结果</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6KPLXH96K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-C6KPLXH96K');
+    </script>
+    <meta name="description" content="Search results for games on Monster Games. Find your favorite games by title, category, or description.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../../images/logo.png" alt="Monster Games Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../games.html">Games</a></li>
+                <li><a href="../../../about.html">About</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search games..." value="">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="search-page">
+        <section class="search-header">
+            <h1>Search Results</h1>
+            <div class="search-stats">
+                <span><i class="fas fa-search"></i> Found 0 games</span>
+                <span><i class="fas fa-clock"></i> Search took 0.1s</span>
+            </div>
+        </section>
+
+        <section class="search-filters">
+            <div class="filter-group">
+                <h3>Sort By</h3>
+                <select class="sort-select">
+                    <option value="relevance">Relevance</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="newest">Newest First</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="name">Name (A-Z)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="all">All Categories</button>
+                    <button class="category-btn" data-category="action">Action</button>
+                    <button class="category-btn" data-category="puzzle">Puzzle</button>
+                    <button class="category-btn" data-category="sports">Sports</button>
+                    <button class="category-btn" data-category="strategy">Strategy</button>
+                    <button class="category-btn" data-category="card">Card</button>
+                    <button class="category-btn" data-category="arcade">Arcade</button>
+                    <button class="category-btn" data-category="racing">Racing</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-results">
+            <div class="results-grid">
+                <!-- 搜索结果将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <section class="no-results" style="display: none;">
+            <div class="no-results-content">
+                <i class="fas fa-search"></i>
+                <h2>No Games Found</h2>
+                <p>Try adjusting your search terms or browse our categories to find what you're looking for.</p>
+                <div class="suggestions">
+                    <h3>Popular Searches</h3>
+                    <div class="suggestion-tags">
+                        <a href="#" class="suggestion-tag">Action Games</a>
+                        <a href="#" class="suggestion-tag">Puzzle Games</a>
+                        <a href="#" class="suggestion-tag">Sports Games</a>
+                        <a href="#" class="suggestion-tag">Strategy Games</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pagination">
+            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <div class="page-numbers">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span>...</span>
+                <button class="page-btn">5</button>
+            </div>
+            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <section class="popular-searches">
+            <h2>Popular Searches</h2>
+            <div class="search-tags">
+                <a href="#" class="search-tag">Action Games</a>
+                <a href="#" class="search-tag">Puzzle Games</a>
+                <a href="#" class="search-tag">Sports Games</a>
+                <a href="#" class="search-tag">Strategy Games</a>
+                <a href="#" class="search-tag">Card Games</a>
+                <a href="#" class="search-tag">Arcade Games</a>
+                <a href="#" class="search-tag">Racing Games</a>
+                <a href="#" class="search-tag">Multiplayer Games</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Monster Games is your ultimate destination for online gaming entertainment. We offer a wide variety of games for all ages and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../games.html">Games</a></li>
+                    <li><a href="../../../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monster Games. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../js/games.js"></script>
+    <script src="../../../js/main.js"></script>
+    <script src="../../../js/search.js"></script>
+</body>
+</html> 

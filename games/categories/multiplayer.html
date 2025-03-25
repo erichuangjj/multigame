@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Games - Monster Games</title>
+    <meta name="description" content="Play exciting multiplayer games on Monster Games. Challenge friends and players worldwide in various multiplayer game modes.">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../../images/logo.png" alt="Monster Games Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../games.html">Games</a></li>
+                <li><a href="../../../about.html">About</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search games...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="category-page">
+        <section class="category-header">
+            <h1>Multiplayer Games</h1>
+            <div class="category-stats">
+                <span><i class="fas fa-users"></i> 25 Games</span>
+                <span><i class="fas fa-users"></i> 20,000+ Players</span>
+                <span><i class="fas fa-star"></i> 4.8/5 Rating</span>
+            </div>
+        </section>
+
+        <section class="category-description">
+            <h2>About Multiplayer Games</h2>
+            <p>Connect with friends and players worldwide in our collection of multiplayer games! From competitive matches to cooperative adventures, these games offer endless social gaming fun.</p>
+        </section>
+
+        <section class="games-filters">
+            <div class="filter-group">
+                <h3>Sort By</h3>
+                <select class="sort-select">
+                    <option value="popular">Most Popular</option>
+                    <option value="newest">Newest First</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="name">Name (A-Z)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Game Mode</h3>
+                <div class="mode-buttons">
+                    <button class="mode-btn active" data-mode="all">All Modes</button>
+                    <button class="mode-btn" data-mode="competitive">Competitive</button>
+                    <button class="mode-btn" data-mode="cooperative">Cooperative</button>
+                    <button class="mode-btn" data-mode="team">Team Battle</button>
+                    <button class="mode-btn" data-mode="party">Party Games</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="games-grid">
+            <!-- 游戏卡片将通过JavaScript动态生成 -->
+        </section>
+
+        <section class="pagination">
+            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <div class="page-numbers">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span>...</span>
+                <button class="page-btn">6</button>
+            </div>
+            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <section class="related-categories">
+            <h2>Related Categories</h2>
+            <div class="category-grid">
+                <a href="../sports.html" class="category-card">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Sports Games</h3>
+                    <p>30 Games</p>
+                </a>
+                <a href="../racing.html" class="category-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Racing Games</h3>
+                    <p>15 Games</p>
+                </a>
+                <a href="../action.html" class="category-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Action Games</h3>
+                    <p>20 Games</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Monster Games is your ultimate destination for online gaming entertainment. We offer a wide variety of games for all ages and interests.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../games.html">Games</a></li>
+                    <li><a href="../../../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monster Games. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../js/games.js"></script>
+    <script src="../../../js/main.js"></script>
+</body>
+</html> 

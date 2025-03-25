@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超级跳跃 - HTML5游戏网站</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .game-container {
+            width: 800px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            background-color: #87CEEB;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .player {
+            width: 50px;
+            height: 50px;
+            background-color: #e74c3c;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            border-radius: 5px;
+        }
+
+        .platform {
+            width: 100px;
+            height: 20px;
+            background-color: #2ecc71;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .restart-button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .restart-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <h1>HTML5游戏</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../games.html">游戏列表</a></li>
+                <li><a href="../about.html">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="game-section">
+            <h2>超级跳跃</h2>
+            <div class="game-container">
+                <div class="player"></div>
+                <div class="score">分数: <span id="scoreValue">0</span></div>
+                <div class="game-over">
+                    <h3>游戏结束</h3>
+                    <p>最终得分: <span id="finalScore">0</span></p>
+                    <button class="restart-button" onclick="restartGame()">重新开始</button>
+                </div>
+            </div>
+            <div class="game-instructions">
+                <h3>游戏说明</h3>
+                <p>使用空格键跳跃，躲避障碍物，收集金币获得分数。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HTML5游戏网站. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        const player = document.querySelector('.player');
+        const gameContainer = document.querySelector('.game-container');
+        const scoreElement = document.getElementById('scoreValue');
+        const gameOverElement = document.querySelector('.game-over');
+        const finalScoreElement = document.getElementById('finalScore');
+
+        let isJumping = false;
+        let score = 0;
+        let gameLoop;
+        let isGameOver = false;
+
+        // 跳跃功能
+        function jump() {
+            if (!isJumping && !isGameOver) {
+                isJumping = true;
+                let position = 0;
+                let jumpInterval = setInterval(() => {
+                    if (position >= 150) {
+                        clearInterval(jumpInterval);
+                        let fallInterval = setInterval(() => {
+                            if (position <= 0) {
+                                clearInterval(fallInterval);
+                                isJumping = false;
+                            } else {
+                                position -= 3;
+                            }
+                            player.style.bottom = position + 'px';
+                        }, 20);
+                    } else {
+                        position += 3;
+                    }
+                    player.style.bottom = position + 'px';
+                }, 20);
+            }
+        }
+
+        // 创建平台
+        function createPlatform() {
+            const platform = document.createElement('div');
+            platform.className = 'platform';
+            platform.style.left = '800px';
+            gameContainer.appendChild(platform);
+
+            let position = 800;
+            let moveInterval = setInterval(() => {
+                if (position <= -100) {
+                    clearInterval(moveInterval);
+                    platform.remove();
+                    score++;
+                    scoreElement.textContent = score;
+                } else {
+                    position -= 2;
+                }
+                platform.style.left = position + 'px';
+            }, 20);
+        }
+
+        // 游戏主循环
+        function startGame() {
+            gameLoop = setInterval(createPlatform, 2000);
+        }
+
+        // 碰撞检测
+        function checkCollision() {
+            const playerRect = player.getBoundingClientRect();
+            const platforms = document.querySelectorAll('.platform');
+
+            platforms.forEach(platform => {
+                const platformRect = platform.getBoundingClientRect();
+                if (
+                    playerRect.bottom >= platformRect.top &&
+                    playerRect.left <= platformRect.right &&
+                    playerRect.right >= platformRect.left
+                ) {
+                    if (!isJumping) {
+                        gameOver();
+                    }
+                }
+            });
+        }
+
+        // 游戏结束
+        function gameOver() {
+            isGameOver = true;
+            clearInterval(gameLoop);
+            finalScoreElement.textContent = score;
+            gameOverElement.style.display = 'block';
+        }
+
+        // 重新开始游戏
+        function restartGame() {
+            score = 0;
+            scoreElement.textContent = '0';
+            gameOverElement.style.display = 'none';
+            isGameOver = false;
+            startGame();
+        }
+
+        // 事件监听
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+                jump();
+            }
+        });
+
+        // 开始游戏
+        startGame();
+        setInterval(checkCollision, 10);
+    </script>
+</body>
+</html> 
