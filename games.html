@@ -1,147 +1,191 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>游戏网站 - 游戏列表</title>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6KPLXH96K"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-C6KPLXH96K');
-    </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Games - Monster Supervisor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #000922 0%, #1a1a2e 100%);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="../images/logo.png" alt="Monster Games Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="games.html" class="active">Games</a></li>
-                <li><a href="../about.html">About</a></li>
-            </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search games...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-        </nav>
-    </header>
-
-    <main class="games-page">
-        <section class="games-header">
-            <h1>All Games</h1>
-            <div class="games-stats">
-                <span><i class="fas fa-gamepad"></i> 115 Games</span>
-                <span><i class="fas fa-users"></i> 10,000+ Players</span>
-                <span><i class="fas fa-star"></i> 4.8/5 Rating</span>
-            </div>
-        </section>
-
-        <section class="games-filters">
-            <div class="filter-group">
-                <h3>Categories</h3>
-                <div class="category-buttons">
-                    <button class="category-btn active" data-category="all">All Games</button>
-                    <button class="category-btn" data-category="puzzle">Puzzle</button>
-                    <button class="category-btn" data-category="action">Action</button>
-                    <button class="category-btn" data-category="sports">Sports</button>
-                    <button class="category-btn" data-category="strategy">Strategy</button>
-                    <button class="category-btn" data-category="card">Card</button>
-                    <button class="category-btn" data-category="arcade">Arcade</button>
-                    <button class="category-btn" data-category="racing">Racing</button>
-                    <button class="category-btn" data-category="simulation">Simulation</button>
+<body class="bg-black text-white">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img src="./images/game-logo.svg" alt="Game Logo" class="h-8 w-8">
+                    <span class="ml-2 text-xl font-bold">Monster Supervisor</span>
                 </div>
-            </div>
-            <div class="filter-group">
-                <h3>Sort By</h3>
-                <select class="sort-select">
-                    <option value="popular">Most Popular</option>
-                    <option value="newest">Newest First</option>
-                    <option value="rating">Highest Rated</option>
-                    <option value="name">Name (A-Z)</option>
-                </select>
-            </div>
-        </section>
-
-        <section class="games-grid">
-            <!-- 游戏卡片将通过JavaScript动态生成 -->
-        </section>
-
-        <section class="pagination">
-            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
-            <div class="page-numbers">
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <span>...</span>
-                <button class="page-btn">12</button>
-            </div>
-            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
-        </section>
-
-        <section class="featured-categories">
-            <h2>Popular Categories</h2>
-            <div class="category-grid">
-                <a href="?category=puzzle" class="category-card">
-                    <i class="fas fa-puzzle-piece"></i>
-                    <h3>Puzzle Games</h3>
-                    <p>25 Games</p>
-                </a>
-                <a href="?category=action" class="category-card">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>Action Games</h3>
-                    <p>20 Games</p>
-                </a>
-                <a href="?category=sports" class="category-card">
-                    <i class="fas fa-futbol"></i>
-                    <h3>Sports Games</h3>
-                    <p>15 Games</p>
-                </a>
-                <a href="?category=strategy" class="category-card">
-                    <i class="fas fa-chess"></i>
-                    <h3>Strategy Games</h3>
-                    <p>18 Games</p>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Monster Games is your ultimate destination for online gaming entertainment. We offer a wide variety of games for all ages and interests.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="games.html">Games</a></li>
-                    <li><a href="../about.html">About</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Connect With Us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="/games.html" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">Games</a>
+                        <a href="/about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Monster Games. All rights reserved.</p>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-gradient pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-5xl font-bold text-center mb-8 gradient-text">Our Games</h1>
+            <p class="text-xl text-gray-300 text-center max-w-3xl mx-auto">
+                Explore our collection of monster-themed games. Each title offers unique gameplay mechanics and challenges.
+            </p>
+        </div>
+    </section>
+
+    <!-- 游戏列表 -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 游戏卡片 1 -->
+                <div class="game-card bg-gray-800 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="aspect-video relative">
+                        <img src="./images/game-screenshot.jpg" alt="Monster Supervisor" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                            Featured
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Monster Supervisor</h3>
+                        <p class="text-gray-400 mb-4">Command your monster army and survive increasingly challenging waves of enemies.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-400">Genre:</span>
+                                <span class="text-sm text-white">Strategy</span>
+                            </div>
+                            <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                                Play Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 2 -->
+                <div class="game-card bg-gray-800 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="aspect-video relative">
+                        <div class="w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                            <span class="text-2xl">Coming Soon</span>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Monster Arena</h3>
+                        <p class="text-gray-400 mb-4">Battle other players' monsters in epic PvP matches. Train, evolve, and become the champion.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-400">Genre:</span>
+                                <span class="text-sm text-white">PvP Battle</span>
+                            </div>
+                            <button class="bg-gray-700 text-gray-400 px-4 py-2 rounded-lg cursor-not-allowed">
+                                Coming Soon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 游戏卡片 3 -->
+                <div class="game-card bg-gray-800 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="aspect-video relative">
+                        <div class="w-full h-full bg-gradient-to-r from-green-600 to-teal-600 flex items-center justify-center">
+                            <span class="text-2xl">In Development</span>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm">
+                            Early Access
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Monster Tycoon</h3>
+                        <p class="text-gray-400 mb-4">Build and manage your own monster training facility. Research new technologies and expand your empire.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-400">Genre:</span>
+                                <span class="text-sm text-white">Management</span>
+                            </div>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                                Join Beta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 订阅区域 -->
+    <section class="py-16 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">Stay Updated</h2>
+            <p class="text-xl text-gray-300 mb-8">Subscribe to our newsletter for early access and exclusive updates about new games.</p>
+            <form class="max-w-md mx-auto">
+                <div class="flex gap-4">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500">
+                    <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                        Subscribe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="./images/game-logo.svg" alt="Game Logo" class="h-8">
+                        <span class="text-lg font-bold">Monster Supervisor</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2024 Monster Supervisor.<br>All rights reserved.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/games.html" class="text-gray-400 hover:text-white transition-colors">Games</a></li>
+                        <li><a href="/about.html" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Bug Report</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-
-    <script src="../js/games.js"></script>
-    <script src="../js/main.js"></script>
 </body>
 </html> 
