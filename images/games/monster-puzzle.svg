@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6b46c1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#434190;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad4)"/>
+    <!-- Puzzle grid -->
+    <rect x="100" y="75" width="200" height="150" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <line x1="166" y1="75" x2="166" y2="225" stroke="#ffffff" stroke-width="2"/>
+    <line x1="233" y1="75" x2="233" y2="225" stroke="#ffffff" stroke-width="2"/>
+    <line x1="100" y1="125" x2="300" y2="125" stroke="#ffffff" stroke-width="2"/>
+    <line x1="100" y1="175" x2="300" y2="175" stroke="#ffffff" stroke-width="2"/>
+    <!-- Monster pieces -->
+    <circle cx="133" cy="100" r="15" fill="#68d391"/>
+    <circle cx="200" cy="150" r="15" fill="#f687b3"/>
+    <circle cx="266" cy="200" r="15" fill="#f6ad55"/>
+    <text x="50%" y="80%" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle">
+        Monster Puzzle
+    </text>
+</svg> 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4a5568;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1a202c;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad5)"/>
+    <!-- Blocks -->
+    <rect x="120" y="100" width="40" height="40" fill="#4fd1c5"/>
+    <rect x="180" y="100" width="40" height="40" fill="#f687b3"/>
+    <rect x="240" y="100" width="40" height="40" fill="#f6ad55"/>
+    <!-- Monster -->
+    <circle cx="140" cy="180" r="20" fill="#68d391"/>
+    <circle cx="132" cy="175" r="4" fill="#2d3748"/>
+    <circle cx="148" cy="175" r="4" fill="#2d3748"/>
+    <path d="M132 185 Q140 190 148 185" stroke="#2d3748" stroke-width="2" fill="none"/>
+    <!-- Arrow -->
+    <path d="M280 180 L240 180 M240 170 L280 180 L240 190" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="50%" y="80%" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle">
+        Monster Blocks
+    </text>
+</svg> 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad10" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4299e1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2b6cb0;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad10)"/>
+    <!-- Clouds -->
+    <ellipse cx="100" cy="100" rx="30" ry="20" fill="#ffffff" opacity="0.8"/>
+    <ellipse cx="300" cy="80" rx="40" ry="25" fill="#ffffff" opacity="0.8"/>
+    <!-- Flying monster car -->
+    <rect x="150" y="130" width="80" height="40" rx="10" fill="#f687b3"/>
+    <!-- Wings -->
+    <path d="M150 150 L120 170 L150 170" fill="#f687b3"/>
+    <path d="M230 150 L260 170 L230 170" fill="#f687b3"/>
+    <!-- Windows -->
+    <rect x="170" y="140" width="30" height="15" fill="#2d3748"/>
+    <!-- Jet flames -->
+    <path d="M140 160 L120 160 L130 170 L120 160" fill="#f6ad55"/>
+    <path d="M240 160 L260 160 L250 170 L260 160" fill="#f6ad55"/>
+    <text x="50%" y="80%" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle">
+        Monster Flying Car
+    </text>
+</svg> 

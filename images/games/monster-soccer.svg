@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2f855a;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#234e52;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad6)"/>
+    <!-- Soccer field -->
+    <rect x="50" y="50" width="300" height="200" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="200" cy="150" r="40" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <line x1="200" y1="50" x2="200" y2="250" stroke="#ffffff" stroke-width="2"/>
+    <!-- Ball -->
+    <circle cx="180" cy="150" r="10" fill="#ffffff"/>
+    <!-- Monster player -->
+    <circle cx="220" cy="150" r="25" fill="#f6ad55"/>
+    <circle cx="212" cy="140" r="5" fill="#2d3748"/>
+    <circle cx="228" cy="140" r="5" fill="#2d3748"/>
+    <path d="M212 155 Q220 160 228 155" stroke="#2d3748" stroke-width="2" fill="none"/>
+    <text x="50%" y="80%" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle">
+        Monster Soccer
+    </text>
+</svg> 

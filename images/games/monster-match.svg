@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#805ad5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#4c51bf;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad3)"/>
+    <!-- Three monsters in a row -->
+    <circle cx="120" cy="150" r="30" fill="#f6ad55"/>
+    <circle cx="200" cy="150" r="30" fill="#4fd1c5"/>
+    <circle cx="280" cy="150" r="30" fill="#f687b3"/>
+    <!-- Eyes -->
+    <circle cx="110" cy="140" r="5" fill="#2d3748"/>
+    <circle cx="130" cy="140" r="5" fill="#2d3748"/>
+    <circle cx="190" cy="140" r="5" fill="#2d3748"/>
+    <circle cx="210" cy="140" r="5" fill="#2d3748"/>
+    <circle cx="270" cy="140" r="5" fill="#2d3748"/>
+    <circle cx="290" cy="140" r="5" fill="#2d3748"/>
+    <!-- Smiles -->
+    <path d="M105 155 Q120 165 135 155" stroke="#2d3748" stroke-width="3" fill="none"/>
+    <path d="M185 155 Q200 165 215 155" stroke="#2d3748" stroke-width="3" fill="none"/>
+    <path d="M265 155 Q280 165 295 155" stroke="#2d3748" stroke-width="3" fill="none"/>
+    <text x="50%" y="80%" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle">
+        Monster Match
+    </text>
+</svg> 
