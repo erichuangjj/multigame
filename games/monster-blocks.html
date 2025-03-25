@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="玩Monster Blocks - 一个有趣的怪物方块消除游戏,通过消除相同颜色的方块来获得高分。">
+    <title>Monster Blocks - 怪物方块 | Monster Supervisor Games</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Monster Blocks",
+        "description": "一个有趣的怪物方块消除游戏,通过消除相同颜色的方块来获得高分",
+        "genre": "消除游戏",
+        "gamePlatform": "Web Browser",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "ratingCount": "128",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    <style>
+        .game-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            background: #000;
+        }
+        .game-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .screenshot-gallery {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .screenshot-gallery::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img src="../images/game-logo.svg" alt="游戏Logo" class="h-8 w-8" onerror="this.style.display='none'">
+                    <span class="ml-2 text-xl font-bold">Monster Supervisor</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="../index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">首页</a>
+                        <a href="../games.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">游戏</a>
+                        <a href="../about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">关于</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 面包屑导航 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <nav class="text-gray-400 py-4" aria-label="Breadcrumb">
+            <ol class="list-none p-0 inline-flex">
+                <li class="flex items-center">
+                    <a href="../index.html" class="hover:text-white">首页</a>
+                    <svg class="h-5 w-5 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                </li>
+                <li class="flex items-center">
+                    <a href="../games.html" class="hover:text-white">游戏</a>
+                    <svg class="h-5 w-5 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                </li>
+                <li class="flex items-center">
+                    <a href="../games.html#puzzle" class="hover:text-white">消除游戏</a>
+                    <svg class="h-5 w-5 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                </li>
+                <li><span class="text-white">Monster Blocks</span></li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- 游戏内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- 游戏信息 -->
+            <div class="lg:col-span-2">
+                <h1 class="text-4xl font-bold mb-4">Monster Blocks</h1>
+                <div class="flex items-center space-x-4 mb-6">
+                    <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">消除游戏</span>
+                    <div class="flex items-center">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="ml-1 text-gray-400">4.5 (128 评分)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 游戏容器 -->
+                <div class="game-container bg-gray-900 rounded-lg overflow-hidden mb-8">
+                    <div id="loadingOverlay" class="loading-overlay">
+                        <div class="text-center">
+                            <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+                            <p class="mt-4 text-blue-500">游戏加载中...</p>
+                        </div>
+                    </div>
+                    <iframe id="gameFrame" class="game-frame" src="../games/monster-blocks/index.html" frameborder="0" allow="fullscreen"></iframe>
+                </div>
+
+                <!-- 游戏描述 -->
+                <div class="prose prose-invert max-w-none">
+                    <h2 class="text-2xl font-bold mb-4">游戏介绍</h2>
+                    <p class="text-gray-300 mb-6">Monster Blocks是一款经典的消除游戏,玩家需要通过消除相同颜色的方块来获得高分。游戏设计精美,玩法简单有趣,适合所有年龄段的玩家。</p>
+                    
+                    <h3 class="text-xl font-bold mb-3">游戏玩法</h3>
+                    <div class="bg-gray-900 rounded-lg p-6 mb-6">
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>点击相同颜色的方块可以消除它们</li>
+                            <li>消除后上方的方块会下落填补空缺</li>
+                            <li>一次性消除越多方块可以获得更高分数</li>
+                            <li>注意时间限制,在时间结束前获得最高分</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <div class="lg:col-span-1">
+                <!-- 游戏截图 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-4">游戏截图</h3>
+                    <div class="screenshot-gallery flex space-x-4 overflow-x-auto pb-4">
+                        <img src="../images/games/monster-blocks-1.svg" alt="游戏截图1" class="w-48 h-32 object-cover rounded-lg">
+                        <img src="../images/games/monster-blocks-2.svg" alt="游戏截图2" class="w-48 h-32 object-cover rounded-lg">
+                        <img src="../images/games/monster-blocks-3.svg" alt="游戏截图3" class="w-48 h-32 object-cover rounded-lg">
+                    </div>
+                </div>
+
+                <!-- 游戏详情 -->
+                <div class="bg-gray-900 rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4">游戏详情</h3>
+                    <dl class="space-y-4">
+                        <div>
+                            <dt class="text-gray-400">类型</dt>
+                            <dd class="text-white">消除游戏</dd>
+                        </div>
+                        <div>
+                            <dt class="text-gray-400">难度</dt>
+                            <dd class="text-white">简单</dd>
+                        </div>
+                        <div>
+                            <dt class="text-gray-400">发布日期</dt>
+                            <dd class="text-white">2024-03-15</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <!-- 社交分享 -->
+                <div class="bg-gray-900 rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4">分享游戏</h3>
+                    <div class="flex space-x-4">
+                        <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                            微博
+                        </button>
+                        <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                            微信
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 相似游戏 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">相似游戏</h3>
+                    <div class="space-y-4">
+                        <a href="monster-match.html" class="block bg-gray-900 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all">
+                            <img src="../images/games/monster-match.svg" alt="Monster Match" class="w-full h-32 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-bold mb-1">Monster Match</h4>
+                                <p class="text-sm text-gray-400">配对消除游戏</p>
+                            </div>
+                        </a>
+                        <a href="monster-puzzle.html" class="block bg-gray-900 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all">
+                            <img src="../images/games/monster-puzzle.svg" alt="Monster Puzzle" class="w-full h-32 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-bold mb-1">Monster Puzzle</h4>
+                                <p class="text-sm text-gray-400">拼图游戏</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 评论区 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 class="text-2xl font-bold mb-8">评论</h2>
+        <div class="mb-8">
+            <form id="commentForm" class="space-y-4">
+                <div>
+                    <label for="comment" class="block text-sm font-medium text-gray-400 mb-2">你的评论</label>
+                    <textarea id="comment" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white" placeholder="分享你对这个游戏的看法..."></textarea>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+                        发表评论
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div id="commentsContainer" class="space-y-6">
+            <!-- 评论将动态加载 -->
+        </div>
+    </section>
+
+    <script>
+        // 加载遮罩层
+        window.addEventListener('load', function() {
+            const gameFrame = document.getElementById('gameFrame');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            
+            gameFrame.addEventListener('load', function() {
+                loadingOverlay.style.display = 'none';
+            });
+        });
+
+        // 评论系统
+        const commentForm = document.getElementById('commentForm');
+        const commentsContainer = document.getElementById('commentsContainer');
+
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const commentText = document.getElementById('comment').value;
+            if (!commentText.trim()) return;
+
+            const commentElement = document.createElement('div');
+            commentElement.className = 'bg-gray-900 rounded-lg p-6';
+            commentElement.innerHTML = `
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                            <span class="text-white font-bold">游</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="font-medium text-white">游客</span>
+                            <span class="text-gray-400 text-sm">刚刚</span>
+                        </div>
+                        <p class="text-gray-300">${commentText}</p>
+                    </div>
+                </div>
+            `;
+
+            commentsContainer.insertBefore(commentElement, commentsContainer.firstChild);
+            commentForm.reset();
+        });
+    </script>
+</body>
+</html> 

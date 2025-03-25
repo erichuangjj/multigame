@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="#1a1a2e"/>
+    <g transform="translate(100,100)">
+        <!-- 游戏标题 -->
+        <text x="300" y="50" font-size="40" fill="white" text-anchor="middle">Monster Blocks</text>
+        
+        <!-- 开始按钮 -->
+        <rect x="300" y="100" width="200" height="60" rx="30" fill="#4a90e2"/>
+        <text x="400" y="140" font-size="24" fill="white" text-anchor="middle">开始游戏</text>
+        
+        <!-- 示例方块 -->
+        <g transform="translate(100,200)">
+            <!-- 红色怪物 -->
+            <rect x="0" y="0" width="80" height="80" rx="10" fill="#ff6b6b"/>
+            <circle cx="40" cy="40" r="24" fill="#ff6b6b"/>
+            <circle cx="30" cy="30" r="8" fill="white"/>
+            <circle cx="50" cy="30" r="8" fill="white"/>
+            <rect x="20" y="50" width="40" height="8" rx="4" fill="white"/>
+            
+            <!-- 青色怪物 -->
+            <rect x="100" y="0" width="80" height="80" rx="10" fill="#4ecdc4"/>
+            <circle cx="140" cy="40" r="24" fill="#4ecdc4"/>
+            <circle cx="130" cy="30" r="8" fill="white"/>
+            <circle cx="150" cy="30" r="8" fill="white"/>
+            <rect x="120" y="50" width="40" height="8" rx="4" fill="white"/>
+        </g>
+    </g>
+</svg> 

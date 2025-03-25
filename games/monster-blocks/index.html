@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Blocks</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: Arial, sans-serif;
+        }
+        
+        .game-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .score, .timer {
+            background: #4a90e2;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            background: #2a2a4a;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        
+        .block {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .block:hover {
+            transform: scale(1.05);
+        }
+        
+        .block.selected {
+            border: 3px solid #ffd700;
+        }
+        
+        .monster {
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .monster::before, .monster::after {
+            content: '';
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            background: white;
+            border-radius: 50%;
+            top: 20%;
+        }
+        
+        .monster::before {
+            left: 20%;
+        }
+        
+        .monster::after {
+            right: 20%;
+        }
+        
+        .monster::before {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 20%;
+            background: white;
+            border-radius: 50%;
+            bottom: 20%;
+            left: 20%;
+        }
+        
+        .start-screen {
+            text-align: center;
+            color: white;
+        }
+        
+        .start-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .start-button:hover {
+            background: #357abd;
+        }
+        
+        .game-over {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .game-over.show {
+            display: flex;
+        }
+        
+        .restart-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .restart-button:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="start-screen" id="startScreen">
+            <h1>Monster Blocks</h1>
+            <p>点击开始游戏</p>
+            <button class="start-button" onclick="startGame()">开始游戏</button>
+        </div>
+        
+        <div class="game-content" id="gameContent" style="display: none;">
+            <div class="game-header">
+                <div class="score">分数: <span id="score">0</span></div>
+                <div class="timer">剩余时间: <span id="timer">60</span>s</div>
+            </div>
+            
+            <div class="game-board" id="gameBoard">
+                <!-- 方块将通过JavaScript动态生成 -->
+            </div>
+        </div>
+        
+        <div class="game-over" id="gameOver">
+            <div>
+                <h2>游戏结束!</h2>
+                <p>最终得分: <span id="finalScore">0</span></p>
+                <button class="restart-button" onclick="restartGame()">重新开始</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const monsters = [
+            { color: '#ff6b6b', name: '红色怪物' },
+            { color: '#4ecdc4', name: '青色怪物' },
+            { color: '#ffd93d', name: '黄色怪物' },
+            { color: '#95a5a6', name: '灰色怪物' },
+            { color: '#e74c3c', name: '深红怪物' },
+            { color: '#2ecc71', name: '绿色怪物' },
+            { color: '#f1c40f', name: '金色怪物' },
+            { color: '#9b59b6', name: '紫色怪物' }
+        ];
+
+        let blocks = [];
+        let selectedBlock = null;
+        let score = 0;
+        let timeLeft = 60;
+        let timer = null;
+        let gameStarted = false;
+
+        function createBlock(monster, index) {
+            const block = document.createElement('div');
+            block.className = 'block';
+            block.dataset.index = index;
+            block.dataset.monster = monster.name;
+            block.style.background = monster.color;
+            
+            const monsterElement = document.createElement('div');
+            monsterElement.className = 'monster';
+            monsterElement.style.background = monster.color;
+            
+            block.appendChild(monsterElement);
+            
+            block.addEventListener('click', () => selectBlock(block));
+            
+            return block;
+        }
+
+        function createBoard() {
+            const gameBoard = document.getElementById('gameBoard');
+            gameBoard.innerHTML = '';
+            
+            // 创建方块
+            let allMonsters = [];
+            for (let i = 0; i < 64; i++) {
+                const monster = monsters[Math.floor(Math.random() * monsters.length)];
+                allMonsters.push(monster);
+            }
+            
+            // 创建方块元素
+            allMonsters.forEach((monster, index) => {
+                const block = createBlock(monster, index);
+                gameBoard.appendChild(block);
+            });
+            
+            blocks = Array.from(document.querySelectorAll('.block'));
+            selectedBlock = null;
+            score = 0;
+            updateScore();
+        }
+
+        function selectBlock(block) {
+            if (!gameStarted) return;
+            
+            if (selectedBlock === block) {
+                block.classList.remove('selected');
+                selectedBlock = null;
+                return;
+            }
+            
+            if (selectedBlock) {
+                selectedBlock.classList.remove('selected');
+            }
+            
+            block.classList.add('selected');
+            selectedBlock = block;
+            
+            if (selectedBlock) {
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [block1, block2] = [selectedBlock, blocks.find(b => b !== selectedBlock && b.classList.contains('selected'))];
+            
+            if (!block2) return;
+            
+            const match = block1.dataset.monster === block2.dataset.monster;
+            
+            if (match) {
+                score += 10;
+                updateScore();
+                block1.classList.remove('selected');
+                block2.classList.remove('selected');
+                selectedBlock = null;
+                
+                // 检查是否完成所有配对
+                if (score === monsters.length * 5) {
+                    endGame(true);
+                }
+            } else {
+                setTimeout(() => {
+                    block1.classList.remove('selected');
+                    block2.classList.remove('selected');
+                    selectedBlock = null;
+                }, 1000);
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+        }
+
+        function startGame() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('gameContent').style.display = 'block';
+            createBoard();
+            startTimer();
+            gameStarted = true;
+        }
+
+        function startTimer() {
+            timeLeft = 60;
+            updateTimer();
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+                if (timeLeft <= 0) {
+                    endGame(false);
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            document.getElementById('timer').textContent = timeLeft;
+        }
+
+        function endGame(won) {
+            clearInterval(timer);
+            gameStarted = false;
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('gameOver').classList.add('show');
+        }
+
+        function restartGame() {
+            document.getElementById('gameOver').classList.remove('show');
+            startGame();
+        }
+    </script>
+</body>
+</html> 

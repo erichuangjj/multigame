@@ -1,0 +1,11 @@
+{
+    "name": "Monster Blocks",
+    "description": "在60秒内找出所有相同的怪物方块!",
+    "version": "1.0.0",
+    "author": "Eric Huang",
+    "main": "index.html",
+    "thumbnail": "thumbnail.png",
+    "category": "puzzle",
+    "difficulty": "medium",
+    "tags": ["puzzle", "memory", "matching"]
+} 

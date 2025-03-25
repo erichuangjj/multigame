@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景渐变 -->
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    
+    <!-- 背景 -->
+    <rect width="800" height="600" fill="url(#bgGradient)"/>
+    
+    <!-- 游戏标题 -->
+    <text x="400" y="150" font-family="Arial" font-size="48" fill="white" text-anchor="middle">Monster Blocks</text>
+    
+    <!-- 开始按钮 -->
+    <rect x="300" y="250" width="200" height="60" rx="30" fill="#4a90e2"/>
+    <text x="400" y="290" font-family="Arial" font-size="24" fill="white" text-anchor="middle">开始游戏</text>
+    
+    <!-- 游戏预览区域 -->
+    <rect x="100" y="350" width="600" height="200" rx="20" fill="#2a2a4a"/>
+    
+    <!-- 方块预览 -->
+    <g transform="translate(150, 400)">
+        <!-- 方块1 -->
+        <rect x="0" y="0" width="80" height="80" rx="10" fill="#ff6b6b"/>
+        <circle cx="40" cy="40" r="20" fill="white"/>
+        <circle cx="30" cy="30" r="5" fill="#ff6b6b"/>
+        <circle cx="50" cy="30" r="5" fill="#ff6b6b"/>
+        <path d="M 20 50 Q 40 60 60 50" stroke="#ff6b6b" stroke-width="3" fill="none"/>
+    </g>
+    
+    <g transform="translate(300, 400)">
+        <!-- 方块2 -->
+        <rect x="0" y="0" width="80" height="80" rx="10" fill="#4ecdc4"/>
+        <circle cx="40" cy="40" r="20" fill="white"/>
+        <circle cx="30" cy="30" r="5" fill="#4ecdc4"/>
+        <circle cx="50" cy="30" r="5" fill="#4ecdc4"/>
+        <path d="M 20 50 Q 40 60 60 50" stroke="#4ecdc4" stroke-width="3" fill="none"/>
+    </g>
+    
+    <g transform="translate(450, 400)">
+        <!-- 方块3 -->
+        <rect x="0" y="0" width="80" height="80" rx="10" fill="#ffd93d"/>
+        <circle cx="40" cy="40" r="20" fill="white"/>
+        <circle cx="30" cy="30" r="5" fill="#ffd93d"/>
+        <circle cx="50" cy="30" r="5" fill="#ffd93d"/>
+        <path d="M 20 50 Q 40 60 60 50" stroke="#ffd93d" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- 分数显示 -->
+    <text x="400" y="580" font-family="Arial" font-size="24" fill="white" text-anchor="middle">最高分: 1000</text>
+</svg> 

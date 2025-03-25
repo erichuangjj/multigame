@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="#1a1a2e"/>
+    <g transform="translate(100,100)">
+        <!-- 游戏标题 -->
+        <text x="300" y="50" font-size="40" fill="white" text-anchor="middle">Monster Blocks</text>
+        
+        <!-- 游戏状态 -->
+        <rect x="50" y="80" width="150" height="40" rx="20" fill="#4a90e2"/>
+        <text x="125" y="105" font-size="20" fill="white" text-anchor="middle">分数: 20</text>
+        
+        <rect x="400" y="80" width="150" height="40" rx="20" fill="#4a90e2"/>
+        <text x="475" y="105" font-size="20" fill="white" text-anchor="middle">剩余时间: 45s</text>
+        
+        <!-- 游戏板 -->
+        <rect x="50" y="150" width="500" height="500" rx="20" fill="#2a2a4a"/>
+        
+        <!-- 示例方块 -->
+        <g transform="translate(70,170)">
+            <!-- 第一行 -->
+            <rect x="0" y="0" width="80" height="80" rx="10" fill="#ff6b6b"/>
+            <rect x="100" y="0" width="80" height="80" rx="10" fill="#4ecdc4"/>
+            <rect x="200" y="0" width="80" height="80" rx="10" fill="#ffd93d"/>
+            <rect x="300" y="0" width="80" height="80" rx="10" fill="#95a5a6"/>
+            
+            <!-- 第二行 -->
+            <rect x="0" y="100" width="80" height="80" rx="10" fill="#e74c3c"/>
+            <rect x="100" y="100" width="80" height="80" rx="10" fill="#2ecc71"/>
+            <rect x="200" y="100" width="80" height="80" rx="10" fill="#f1c40f"/>
+            <rect x="300" y="100" width="80" height="80" rx="10" fill="#9b59b6"/>
+        </g>
+    </g>
+</svg> 
