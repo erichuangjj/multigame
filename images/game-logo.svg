@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆形 -->
+    <circle cx="24" cy="24" r="22" fill="#1a1a1a"/>
+    
+    <!-- 怪物眼睛 -->
+    <circle cx="18" cy="20" r="4" fill="#ff3366"/>
+    <circle cx="30" cy="20" r="4" fill="#ff3366"/>
+    
+    <!-- 发光效果 -->
+    <circle cx="18" cy="20" r="2" fill="#ff6699"/>
+    <circle cx="30" cy="20" r="2" fill="#ff6699"/>
+    
+    <!-- 监管者标志 -->
+    <path d="M14 28C14 28 19 32 24 32C29 32 34 28 34 28" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- 外圈光环 -->
+    <circle cx="24" cy="24" r="21" stroke="#3366ff" stroke-width="2" stroke-dasharray="4 2"/>
+</svg> 
