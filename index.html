@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>游戏网站 - 首页</title>
-    <!-- Google Analytics -->
-=======
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +7,6 @@
     <title>Monster Supervisor - Command Your Monster Army and Survive</title>
     <link rel="canonical" href="https://monstersupervisor.com">
     <!-- Google tag (gtag.js) -->
->>>>>>> 42eb15806df7faf26e584f68679ee4ca6cb4a63d
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6KPLXH96K"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -23,206 +14,126 @@
         gtag('js', new Date());
         gtag('config', 'G-C6KPLXH96K');
     </script>
-<<<<<<< HEAD
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <header>
-        <nav class="main-nav">
-            <div class="logo">
-                <h1>Monster Supervisor</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="games.html">Games</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h2>Welcome to Monster Supervisor</h2>
-            <p>Discover amazing HTML5 games and start your gaming adventure!</p>
-        </section>
-
-        <section class="featured-games">
-            <h2>Featured Games</h2>
-            <div class="game-grid">
-                <!-- 游戏卡片将通过JavaScript动态加载 -->
-=======
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        apple: {
-                            blue: '#007AFF',
-                            green: '#34C759',
-                            indigo: '#5856D6',
-                            orange: '#FF9500',
-                            pink: '#FF2D55',
-                            primary: '#000000',
-                            secondary: '#6e6e73',
-                            tertiary: '#a1a1a6',
-                            background: '#f5f5f7',
-                        }
-                    }
-                }
-            }
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .game-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            background: #000;
         }
-    </script>
+        .game-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
-<body class="bg-apple-background text-apple-primary font-sans">
-    <!-- Header -->
-    <header class="bg-black text-white p-4 md:p-6">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-0">
-                <a href="/" class="hover:text-apple-blue transition-colors">Monster Supervisor</a>
+<body class="bg-gray-100">
+    <header class="bg-black text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <h1 class="text-3xl font-bold mb-4 md:mb-0">
+                    <a href="/" class="hover:text-blue-400 transition-colors">Monster Supervisor</a>
+                </h1>
+                <nav>
+                    <ul class="flex space-x-8">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Home</a></li>
+                        <li><a href="/games.html" class="hover:text-blue-400 transition-colors">Games</a></li>
+                        <li><a href="/about.html" class="hover:text-blue-400 transition-colors">About</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#gameplay" class="hover:text-apple-blue transition-colors">Gameplay</a></li>
-                    <li><a href="#features" class="hover:text-apple-blue transition-colors">Features</a></li>
-                    <li><a href="#controls" class="hover:text-apple-blue transition-colors">Controls</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 md:py-12">
-        <!-- Hero Section -->
-        <section class="text-center mb-12 md:mb-16">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Monster Supervisor</h1>
-            <p class="text-xl md:text-2xl text-apple-secondary max-w-3xl mx-auto mb-8">Command your monster army, collect power-ups, and survive increasingly challenging waves of enemies.</p>
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center mb-12">
+            <h2 class="text-5xl font-bold mb-6">Monster Supervisor</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                Command your monster army, collect power-ups, and survive increasingly challenging waves of enemies.
+            </p>
             
-            <!-- Game iFrame -->
-            <div class="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl border-4 border-apple-blue">
-                <iframe src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" 
-                        title="Monster Supervisor Game" 
-                        class="w-full aspect-video" 
-                        allow="fullscreen"
-                        loading="lazy"></iframe>
-            </div>
-        </section>
-
-        <!-- Game Info Section -->
-        <section id="gameplay" class="mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Gameplay Overview</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3 text-apple-blue">Monster Command</h3>
-                    <p class="text-apple-secondary">In Monster Supervisor, you'll take control of a diverse army of monsters, each with unique abilities and powers. Direct your monsters strategically to overcome increasingly difficult enemy waves while collecting resources to strengthen your forces.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3 text-apple-pink">Survival Mechanics</h3>
-                    <p class="text-apple-secondary">As the game progresses, enemy waves become more challenging. Collect power-ups, upgrade your monsters, and develop strategic formations to survive. How long can you last against the onslaught?</p>
+            <div class="max-w-5xl mx-auto bg-black rounded-lg overflow-hidden shadow-2xl">
+                <div class="game-container">
+                    <iframe 
+                        src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html"
+                        class="game-frame"
+                        title="Monster Supervisor Game"
+                        allowfullscreen
+                        scrolling="no"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section id="features" class="mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Game Features</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3 text-apple-green">Diverse Monster Types</h3>
-                    <p class="text-apple-secondary">Choose from multiple monster classes, each with unique attacks, abilities, and upgrade paths to suit different play styles.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3 text-apple-orange">Dynamic Environments</h3>
-                    <p class="text-apple-secondary">Battle across various landscapes that affect gameplay, offering different challenges and strategic opportunities.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3 text-apple-indigo">Progression System</h3>
-                    <p class="text-apple-secondary">Unlock new monsters, abilities, and power-ups as you play, creating a rewarding progression system that keeps you coming back for more.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Controls Section -->
-        <section id="controls" class="mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Game Controls</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h3 class="text-xl font-bold mb-3 text-apple-blue">Keyboard Controls</h3>
-                        <ul class="space-y-2 text-apple-secondary">
-                            <li><span class="font-bold">WASD</span> - Move your character</li>
-                            <li><span class="font-bold">Space</span> - Special ability</li>
-                            <li><span class="font-bold">1-4</span> - Select different monsters</li>
-                            <li><span class="font-bold">E</span> - Interact with objects</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-3 text-apple-blue">Mobile Controls</h3>
-                        <ul class="space-y-2 text-apple-secondary">
-                            <li><span class="font-bold">Left Side</span> - Virtual joystick for movement</li>
-                            <li><span class="font-bold">Right Side</span> - Action buttons</li>
-                            <li><span class="font-bold">Swipe</span> - Change selected monster</li>
-                            <li><span class="font-bold">Tap</span> - Interact with objects</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tips Section -->
-        <section class="mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Survival Tips</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-                <ul class="space-y-4 text-apple-secondary">
-                    <li class="flex items-start">
-                        <span class="text-apple-green font-bold mr-2">•</span>
-                        <p>Focus on upgrading your strongest monsters early in the game to establish a solid defense.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-orange font-bold mr-2">•</span>
-                        <p>Don't neglect resource collection - the power-ups can make the difference between victory and defeat.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-pink font-bold mr-2">•</span>
-                        <p>Learn the attack patterns of different enemy types to develop effective counter-strategies.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-blue font-bold mr-2">•</span>
-                        <p>Balance your monster team with different abilities to handle various situations.</p>
-                    </li>
+        <section class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-4 text-blue-600">Game Features</h3>
+                <ul class="space-y-4 text-gray-600">
+                    <li>• Multiple monster types with unique abilities</li>
+                    <li>• Strategic gameplay and resource management</li>
+                    <li>• Progressive difficulty system</li>
+                    <li>• Power-ups and upgrades</li>
                 </ul>
->>>>>>> 42eb15806df7faf26e584f68679ee4ca6cb4a63d
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-4 text-blue-600">Controls</h3>
+                <div class="grid grid-cols-2 gap-4 text-gray-600">
+                    <div>
+                        <h4 class="font-bold mb-2">Keyboard</h4>
+                        <ul class="space-y-2">
+                            <li>WASD - Move</li>
+                            <li>Space - Special</li>
+                            <li>1-4 - Select monster</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">Mobile</h4>
+                        <ul class="space-y-2">
+                            <li>Left side - Move</li>
+                            <li>Right side - Actions</li>
+                            <li>Swipe - Change monster</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-<<<<<<< HEAD
-    <footer>
-        <p>&copy; 2024 Monster Supervisor. All rights reserved.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
-</body>
-</html> 
-=======
-    <!-- Footer -->
     <footer class="bg-black text-white py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <p class="text-lg font-bold">Monster Supervisor</p>
-                    <p class="text-apple-tertiary text-sm">© 2025 Monster Supervisor. All rights reserved.</p>
+                    <div class="flex items-center space-x-2">
+                        <p class="text-lg font-bold">Monster Supervisor</p>
+                        <img src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/logo.png" alt="Game Logo" class="h-8">
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2024 Monster Supervisor. All rights reserved.</p>
                 </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-apple-tertiary hover:text-apple-blue transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-apple-tertiary hover:text-apple-blue transition-colors">Terms of Use</a>
-                    <a href="#" class="text-apple-tertiary hover:text-apple-blue transition-colors">Contact</a>
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Terms of Use</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Contact</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 </body>
 </html>
->>>>>>> 42eb15806df7faf26e584f68679ee4ca6cb4a63d
